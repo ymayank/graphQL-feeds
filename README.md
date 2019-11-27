@@ -1,2 +1,2 @@
-# posts
-node - posts (Graph QL)
+# graphQL-feeds
+graphQL-feeds node.js
