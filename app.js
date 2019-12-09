@@ -100,9 +100,9 @@ app.use((error, req, res, next) => {
 });
 
 connectDB(() => {
-    // app.listen(PORT);
-    https
-        .createServer({ key: privateKey, cert: certificate}, app)
-        .listen(process.env.PORT);
+    app.listen(process.env.PORT);
+    // https
+    //     .createServer({ key: privateKey, cert: certificate}, app)
+    //     .listen(process.env.PORT);
     console.log(`Node server listening on port: ${process.env.PORT}`);
 });
