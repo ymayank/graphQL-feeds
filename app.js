@@ -104,5 +104,5 @@ connectDB(() => {
     https
         .createServer({ key: privateKey, cert: certificate}, app)
         .listen(process.env.PORT);
-    console.log(`Node server listening on port: ${PORT}`);
+    console.log(`Node server listening on port: ${process.env.PORT}`);
 });
