@@ -1,4 +1,6 @@
 const path = require('path');
+const https = require('https');
+const fs = require('fs');
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -15,6 +17,10 @@ const graphqlResolver = require('./graphql/resolvers');
 const isAuth = require('./middleware/isAuth');
 
 const app = express();
+
+const privateKey = fs.readFileSync('server.key');
+const certificate = fs.readFileSync('server.cert');
+
 
 const fileStorage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -96,6 +102,9 @@ app.use((error, req, res, next) => {
 });
 
 connectDB(() => {
-    app.listen(PORT);
+    // app.listen(PORT);
+    https
+        .createServer({ key: privateKey, cert: certificate}, app)
+        .listen(PORT);
     console.log(`Node server listening on port: ${PORT}`);
 });
