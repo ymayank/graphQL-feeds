@@ -7,8 +7,6 @@ const bodyParser = require('body-parser');
 const multer = require('multer');
 const graphqlHttp = require('express-graphql');
 
-const { PORT } = require('./config/config');
-
 const connectDB = require('./util/database');
 const { deleteImage } = require('./util/utility');
 
@@ -105,6 +103,6 @@ connectDB(() => {
     // app.listen(PORT);
     https
         .createServer({ key: privateKey, cert: certificate}, app)
-        .listen(PORT);
+        .listen(process.env.PORT);
     console.log(`Node server listening on port: ${PORT}`);
 });
